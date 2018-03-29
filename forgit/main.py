@@ -1,44 +1,37 @@
-import argparse
+import os
 import sys
-import time
+import argparse
+sys.path.insert(0, os.getcwd())
+import forgit
 
 # Commandline interface
 parser = argparse.ArgumentParser()
 
 
-parser.add_argument("-n", "--new",
-                    action='store_true')
 
-
-parser.add_argument("-u", "--update",
-                    action='store_true')
-
-
-parser.add_argument("-g", "--grab",
+parser.add_argument("-k", "--kind",
                     type=str,
                     help=None,
                     nargs="?",
                     default=".gitignore")
 
 
-parser.add_argument("-f", "--file",
+parser.add_argument("-d", "--dest",
                     type=str,
                     help="",
                     default=None,
                     nargs="?")
 
-
-parser.add_argument("-e", "--ext",
-                    type=str,
-                    help="",
-                    default=None,
-                    nargs="?")
-
+# parser.add_argument("-n", "--new",
+#                     action='store_true')
+#
+#
+# parser.add_argument("-u", "--update",
+#                     action='store_true')
 
 args = parser.parse_args()
 
-# print(vars(args))
-
-if __name__ == '__main__':
-
-    print(vars(args)["new"])
+def main():
+    # print(vars(args)["new"])
+    # args = vars(args)
+    forgit.utils.github_tools.grab(**vars(args))

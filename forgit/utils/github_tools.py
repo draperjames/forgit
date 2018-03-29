@@ -75,23 +75,23 @@ def create_link_list(url):
     return content_links
 
 
-# Grab gitignore files from github's repo
-if __name__ == "__main__":
 
-    url = "https://github.com/github/gitignore"
+def grab(kind, dest=None, url=None, *args, **kwargs):
+    """Grab gitignore files from github's repo.
+    """
+    # kind = "Python"
+    dest = dest or os.getcwd()
+    url = url or 'https://github.com/github/gitignore'
 
     content_links = create_link_list(url)
 
-    term = "Python"
-    dest = os.getcwd()
-
-    result = list(filter(lambda x: term in x, content_links))
+    result = list(filter(lambda x: kind in x, content_links))
 
     if len(result) == 1:
         target_url = result[0]
     else:
         target_url = ""
-        print(term, ", not found.")
+        print(kind, ", not found.")
 
     target_name = target_url.split("/")[-1]
 
@@ -99,5 +99,7 @@ if __name__ == "__main__":
 
     dest = os.path.join(dest, gitignore_name)
 
-    print(dest)
-    # download_data(url=target_url, dest=dest)
+    download_data(url=target_url, dest=dest)
+
+# if __name__ == "__main__":
+#     pass

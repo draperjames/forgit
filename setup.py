@@ -38,6 +38,7 @@ class ForgitDevelop(_develop):
         _develop.run(self)
         self.execute(_post_install, [], msg="Running post develop task")
 
+
 setup(
     name='forgit',
     version=__version__,
@@ -60,15 +61,15 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
 
-    keywords='Jupyter Notebook',
+    keywords='Git',
     packages=find_packages(),
-    package_data = {'forgit': ['__version__', 'fileupload/static/*.js'],},
-    install_requires=['pandas', 'xlrd'],
+    package_data = {'forgit': ['__version__',],},
+    # install_requires=['pandas', 'xlrd'],
     cmdclass={'install': ForgitInstall, "develop":ForgitDevelop},
     # Set the console entry point.
     entry_points={
         'console_scripts': [
-            'forgit=forgit:main'
+            'forgit=forgit:main.main'
         ],
     },
 )
